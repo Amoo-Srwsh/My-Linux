@@ -110,17 +110,14 @@ EXPORT_SYMBOL(strcpy);
  * count, the remainder of @dest will be padded with %NUL.
  *
  */
-char *strncpy(char *dest, const char *src, size_t count)
+char *StrnCpy(char *dest, const char *src,int count)
 {
-	char *tmp = dest;
+        char *tmp = dest;
 
-	while (count) {
-		if ((*tmp = *src) != 0)
-			src++;
-		tmp++;
-		count--;
-	}
-	return dest;
+        while (count--)
+                if ((*dest++ = *src++) == '\0')
+                        break;
+        return tmp;
 }
 EXPORT_SYMBOL(strncpy);
 #endif
