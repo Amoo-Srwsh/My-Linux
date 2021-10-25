@@ -217,7 +217,7 @@ ssize_t strscpy(char *dest, const char *src, size_t count)
 		max -= sizeof(unsigned long);
 	}
 
-	while (count) {
+	while (count--) {
 		char c;
 
 		c = src[res];
@@ -225,7 +225,6 @@ ssize_t strscpy(char *dest, const char *src, size_t count)
 		if (!c)
 			return res;
 		res++;
-		count--;
 	}
 
 	/* Hit buffer length without finding a NUL; force NUL-termination. */
