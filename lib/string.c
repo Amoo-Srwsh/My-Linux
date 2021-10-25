@@ -112,12 +112,9 @@ EXPORT_SYMBOL(strcpy);
  */
 char *strncpy(char *dest, const char *src,int count)
 {
-        char *tmp = dest;
+        while (count--,(dest[count] = src[count]));
 
-        while (count--)
-                if ((*dest++ = *src++) == '\0')
-                        break;
-        return tmp;
+        return dest;
 }
 EXPORT_SYMBOL(strncpy);
 #endif
