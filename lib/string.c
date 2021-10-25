@@ -555,11 +555,11 @@ EXPORT_SYMBOL(strim);
  */
 size_t strlen(const char *s)
 {
-	const char *sc;
+	const char *sc = s;
 
-	for (sc = s; *sc != '\0'; ++sc)
-		/* nothing */;
-	return sc - s;
+        for (; *s != '\0'; s++);
+
+        return s - sc;
 }
 EXPORT_SYMBOL(strlen);
 #endif
