@@ -531,19 +531,22 @@ EXPORT_SYMBOL(skip_spaces);
  */
 char *strim(char *s)
 {
-	size_t size;
-	char *end;
+        size_t size;
+        char *end;
+        int check_segment = 0;
 
-	size = strlen(s);
-	if (!size)
-		return s;
+        size = strlen(s);
+        if (!size)
+                return s;
 
-	end = s + size - 1;
-	while (end >= s && isspace(*end))
-		end--;
-	*(end + 1) = '\0';
+        end = s + size - 1;
+        while (end >= s && isspace(*end))
+                end--, check_segment = 1;
 
-	return skip_spaces(s);
+        if ( check_segment )
+                *(end + 1) = '\0';
+
+        return skip_spaces(s);
 }
 EXPORT_SYMBOL(strim);
 
